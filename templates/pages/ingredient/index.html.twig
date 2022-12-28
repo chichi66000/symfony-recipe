@@ -15,6 +15,9 @@
             </div>
         {% endfor %}
 
+        {# button to create new ingredient #}
+        <a class="btn btn-primary" href="{{ path('ingredient.new')}}">Créer un ingrédient
+        </a>
         {# total items count #}
         <div class="count mt-4">
             <small>Il y a {{ ingredients.getTotalItemCount }} ingrédients au total</small>
