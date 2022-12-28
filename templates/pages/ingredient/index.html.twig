@@ -8,6 +8,13 @@
         
         <h1>Mes ingrédients</h1>
 
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {# total items count #}
         <div class="count mt-4">
             <small>Il y a {{ ingredients.getTotalItemCount }} ingrédients au total</small>
