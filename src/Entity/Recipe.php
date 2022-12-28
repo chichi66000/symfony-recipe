@@ -38,7 +38,7 @@ class Recipe
 
     #[ORM\Column(nullable: true)]
     #[Assert\Positive()]
-    #[Assert\LessThan(5)]
+    #[Assert\LessThan(6)]
     private ?int $difficulty = null;
 
     #[ORM\Column(type: Types::TEXT)]
