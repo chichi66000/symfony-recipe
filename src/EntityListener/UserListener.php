@@ -38,8 +38,10 @@ class UserListener {
         $user->setPassword(
             $this->hasher->hashPassword(
                 $user,
-                $user->getPlainPassword())
+                $user->getPlainPassword()
+            )
         );
+
         // reset password = null
         $user->setPlainPassword(null);
     }
