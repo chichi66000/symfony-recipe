@@ -68,6 +68,18 @@
                 </div>
             </div>
 
+            {{ form_label(form.ingredients) }}
+            <br>
+            <div id="ingredients-wrapper " class="d-flex flex-column flex-sm-row flex-wrap">
+                {% for field in form.ingredients %}
+                    <div style="min-width: 10em;" class="">
+                        {{ form_widget(field) }}
+                        {{ form_label(field) }}
+                    </div>
+                {% endfor %}
+            </div>
+
+
             {# button submit #}
             <div class="form-group">
                 {{form_row(form.submit)}}
