@@ -3,6 +3,78 @@
 {% block body %}
     <div class="container">
         <h1 class="mt-4">Créer nouvelle recette</h1>
-        {{form(form)}}
+        {{ form_start(form) }}
+            {# input Nom #}
+            <div class="form-group">
+                {{ form_label(form.name)}}
+                {{ form_widget(form.name)}}
+                <div class="form-error">
+                    {{ form_errors(form.name) }}
+                </div>
+            </div>
+
+            {# input time #}
+            <div class="form-group">
+                {{ form_label(form.time)}}
+                {{ form_widget(form.time)}}
+                <div class="form-error">
+                    {{ form_errors(form.time) }}
+                </div>
+            </div>
+
+            {# input difficulty #}
+            <div class="form-group">
+                {{ form_label(form.difficulty)}}
+                {{ form_widget(form.difficulty)}}
+                <div class="form-error">
+                    {{ form_errors(form.difficulty) }}
+                </div>
+            </div>
+
+
+            {# input description #}
+            <div class="form-group">
+                {{ form_label(form.description)}}
+                {{ form_widget(form.description)}}
+                <div class="form-error">
+                    {{ form_errors(form.description) }}
+                </div>
+            </div>
+
+            {# input nbPeople #}
+            <div class="form-group">
+                {{ form_label(form.nbPeople)}}
+                {{ form_widget(form.nbPeople)}}
+                <div class="form-error">
+                    {{ form_errors(form.nbPeople) }}
+                </div>
+            </div>
+
+            {# input price #}
+            <div class="form-group">
+                {{ form_label(form.price)}}
+                {{ form_widget(form.price)}}
+                <div class="form-error">
+                    {{ form_errors(form.price) }}
+                </div>
+            </div>
+
+            {# input favourite #}
+            <div class="form-group">
+                {{ form_label(form.isFavorite) }}
+                {{ form_widget(form.isFavorite)}}
+                <div class="form-error">
+                    {{ form_errors(form.isFavorite) }}
+                </div>
+            </div>
+
+            
+
+            {# button submit #}
+            <div class="form-group">
+                {{form_row(form.submit)}}
+            </div>
+
+        {{ form_end(form) }}
     </div>
 {% endblock %}

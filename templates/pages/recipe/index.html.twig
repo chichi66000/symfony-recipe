@@ -8,6 +8,13 @@
         
         <h1>Mes recettes</h1>
 
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+        
         {# button to create new ingredient #}
         <a class="btn btn-primary" href="{{ path('recipe.new')}}">Créer une recette
         </a>

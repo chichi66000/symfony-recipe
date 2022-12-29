@@ -44,7 +44,7 @@ class RecipeType extends AbstractType
                     'min' => 1,
                     'max' => 1440
                 ],
-                'label' => 'Prix (en minute)',
+                'label' => 'Temps (en minute)',
                 'label_attr' => [
                    'class'=> 'form-label mt-4'
                 ],
@@ -112,7 +112,9 @@ class RecipeType extends AbstractType
             ->add('isFavorite', CheckboxType::class, [
                 'attr' => [
                     'class' => 'form-control',
+                    
                 ],
+                'required' => false,
                 'label' => 'Favorite ?',
                 'label_attr' => [
                    'class'=> 'form-label mt-4'
