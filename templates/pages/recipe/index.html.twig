@@ -44,12 +44,9 @@
                         <td>{{recipe.difficulty is null ? 'non-renseigné' : recipe.difficulty}}</td>
                         <td>{{recipe.createdAt|date('d/m/Y')}}</td>
                         <td>
-                            {# <a href="{{path('recipe.edit', {id: recipe.id})}}" class="btn btn-info">Modifier</a> #}
-                            todo
+                            <a href="{{path('recipe.edit', {id: recipe.id})}}" class="btn btn-info">Modifier</a>
                         </td>
                         <td>
-                            todo
-
                             {# <a href="{{path('recipe.delete', {id: recipe.id})}}" class="btn btn-warning">Supprimer</a> #}
                         </td>
                     </tr>

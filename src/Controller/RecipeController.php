@@ -39,6 +39,13 @@ class RecipeController extends AbstractController
         ]);
     }
 
+    /**
+     * This controller add new recipe
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/recette/creation', 'recipe.new', methods: ['GET', 'POST'])]
     public function new (Request $request, EntityManagerInterface $manager) : Response 
     {
@@ -56,4 +63,42 @@ class RecipeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * This controller modify recipe with id
+     *
+     * @param Recipe $Recipe
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route("/recette/edition/{id}", "recipe.edit", methods:["GET", "POST"])]
+    public function edit (
+        Recipe $recipe,
+        Request $request,
+        EntityManagerInterface $manager
+        ): Response 
+    {
+        // create form
+        $form = $this->createForm(RecipeType::class, $recipe);
+        // validate & send form
+        $form ->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $recipe = $form->getData();
+            // push to database
+            $manager->persist($recipe);
+            $manager->flush();
+            // add message
+            $this->addFlash(
+                'success',
+                'Votre recette a été modifié'
+            );
+            // redirect
+            return $this->redirectToRoute('recipe.index');
+        }
+        return $this->render('pages/recipe/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 }
