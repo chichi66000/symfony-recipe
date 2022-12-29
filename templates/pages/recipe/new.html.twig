@@ -60,11 +60,11 @@
             </div>
 
             {# input favourite #}
-            <div class="form-group">
-                {{ form_label(form.isFavorite) }}
+            <div class="form-check mt-4">
                 {{ form_widget(form.isFavorite)}}
+                {{ form_label(form.isFavorite) }}
                 <div class="form-error">
-                    {{ form_errors(form.isFavorite) }}
+                {{ form_errors(form.isFavorite) }}
                 </div>
             </div>
 
