@@ -5,6 +5,13 @@
 {% block body %}
     <div class="container">
         <h1 class="mt-4">Modifier Profil</h1>
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {{form(form)}}
     </div>
 {% endblock %}
