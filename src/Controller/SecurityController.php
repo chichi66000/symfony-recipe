@@ -29,11 +29,23 @@ class SecurityController extends AbstractController
     }
 
     #[Route('/deconnexion', 'security.logout')]
+    /**
+     * This controller de security to logout
+     *
+     * @return void
+     */
     public function logout () 
     {
         // Nothing to do here
     }
 
+    /**
+     * this controller allow registration new user
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/inscription', 'security.registration', methods: ['GET', 'POST'])]
     public function registration (Request $request, EntityManagerInterface $manager) :Response 
     {   
