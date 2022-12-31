@@ -8,10 +8,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController {
     #[Route('/', 'home.index', methods: ['GET'])]
-    public function index():Response
+    public function index(RecipeRepository $repository):Response
     {   
-        // #[Route('/', 'home.index', method: ['GET'])]
-        // return $this->render('home.html.twig');
-        return $this->render('pages/home.html.twig');
+        $recipes = $repository->findPublicRecipe(3);
+        return $this->render('pages/home.html.twig', [
+            'recipes' => $recipes
+        ]);
     }
 }
