@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Symfony Recipe - Mes recettes{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        {% if not recipes.items is same as [] %}
+        
+            <h1>Recettes de la communauté</h1>
+
+            {# read and display just one flash message type #}
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        
+            <div class="d-flex flex-wrap justify-content-center">
+                {% for recipe in recipes %}
+                    <div class="card border-primary mb-3 mx-2" style="max-width: 20rem;">
+                        <div class="card-header">Recette n° {{recipe.id}}</div>
+                        <div class="card-body">
+                            <h4 class="card-title">{{recipe.name}}</h4>
+                            <p class="card-text">{{recipe.description|slice(0, 100) ~ "..."}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {# <div class="card mb-3">
+                <h3 class="card-header">Card header</h3>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                </div>
+            </div> #}
+        
+            {# display navigation #}
+            <div class="navigation d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(recipes) }}
+            </div>
+
+        {% else %}
+            <h4> Il n'y a pas ingrédients </h4>
+        {% endif %}
+    </div>
+{% endblock %}

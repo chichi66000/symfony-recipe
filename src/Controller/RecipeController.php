@@ -43,6 +43,29 @@ class RecipeController extends AbstractController
         ]);
     }
 
+    #[Route('/recette/publique', 'recipe.index.public', methods:['GET'])]
+    public function indexPublic (
+        PaginatorInterface $paginator, 
+        RecipeRepository $repository, 
+        Request $request
+    ) : Response 
+    {   
+        $recipes = $paginator->paginate(
+            $repository->findPublicRecipe(null),
+            $request->query->getInt('page', 1),
+            10
+        );
+        return $this->render('pages/recipe/index_public.html.twig', [
+            'recipes' => $recipes
+        ]);
+    }
+    
+    /**
+     * This controller display one recipe for all connected user if this one is public
+     *
+     * @param Recipe $recipe
+     * @return Response
+     */
     #[Security("is_granted('ROLE_USER') and recipe.isIsPublic() === true")]
     #[Route('/recette/{id}', 'recipe.show', methods:['GET'])]
     public function show (Recipe $recipe) : Response 
