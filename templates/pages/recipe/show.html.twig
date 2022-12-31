@@ -3,8 +3,11 @@
 {% block body %}
     <div class="container">
         <h1 class="mt-4">Recettes {{recipe.name}}</h1>
+
         <div>
             <span class="badge bg-primary">Créé le {{recipe.createdAt.format('d/m/y')}}</span>
+            <p>Note moyenne: {{(recipe.average)}}/ 5</p>
+
         </div>
 
         <div class="mt-4">
