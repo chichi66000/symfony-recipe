@@ -4,9 +4,16 @@
     <div class="container">
         <h1 class="mt-4">Recettes {{recipe.name}}</h1>
 
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <div>
             <span class="badge bg-primary">Créé le {{recipe.createdAt.format('d/m/y')}}</span>
-            <p>Note moyenne: {{(recipe.average)}}/ 5</p>
+            <p>Note moyenne: {{recipe.average|number_format(2, '.', '.')}}/ 5</p>
 
         </div>
 
@@ -50,10 +57,14 @@
         {# Ingrédients #}
         <div class="mt-4">
             <h4> Les ingrédients</h4>
-        {% for ingredient in recipe.ingredients %}
+            {% for ingredient in recipe.ingredients %}
+                <span class="badge bg-primary">{{ingredient.name}}</span>
+            {% endfor %}
+        </div>
 
-            <span class="badge bg-primary">{{ingredient.name}}</span>
-        {% endfor %}
+        {# Noter recette #}
+        <div class="mt-4">
+            {{form(form)}}
         </div>
     </div>
 {% endblock %}
