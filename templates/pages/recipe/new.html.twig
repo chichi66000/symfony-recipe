@@ -68,7 +68,16 @@
                 </div>
             </div>
 
+            <div class="form-check mt-4">
+                {{ form_widget(form.isPublic)}}
+                {{ form_label(form.isPublic) }}
+                <div class="form-error">
+                {{ form_errors(form.isPublic) }}
+                </div>
+            </div>
+
             {{ form_label(form.ingredients) }}
+            
             <br>
             <div id="ingredients-wrapper " class="d-flex flex-column flex-sm-row flex-wrap">
                 {% for field in form.ingredients %}
