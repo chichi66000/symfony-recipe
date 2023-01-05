@@ -64,6 +64,34 @@ class RecipeController extends AbstractController
     }
     
     /**
+     * This controller add new recipe
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recette/creation', 'recipe.new', methods: ['GET', 'POST'])]
+    public function new (Request $request, EntityManagerInterface $manager) : Response 
+    {
+        $recipe = new Recipe();
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())  {
+            $recipe = $form->getData();
+            $recipe->setUser($this->getUser());
+            
+            $manager->persist($recipe);
+            $manager->flush();
+            $this->addFlash('success', 'Votre recette a été créé');
+            return $this->redirectToRoute('recipe.index');
+        }
+        return $this->render('pages/recipe/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * This controller display one recipe for all connected user if this one is public
      *
      * @param Recipe $recipe
@@ -113,34 +141,6 @@ class RecipeController extends AbstractController
         ]);
     }
 
-
-    /**
-     * This controller add new recipe
-     *
-     * @param Request $request
-     * @param EntityManagerInterface $manager
-     * @return Response
-     */
-    #[IsGranted('ROLE_USER')]
-    #[Route('/recette/creation', 'recipe.new', methods: ['GET', 'POST'])]
-    public function new (Request $request, EntityManagerInterface $manager) : Response 
-    {
-        $recipe = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recipe);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())  {
-            $recipe = $form->getData();
-            $recipe->setUser($this->getUser());
-            
-            $manager->persist($recipe);
-            $manager->flush();
-            $this->addFlash('success', 'Votre recette a été créé');
-            return $this->redirectToRoute('recipe.index');
-        }
-        return $this->render('pages/recipe/new.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
 
     /**
      * This controller modify recipe with id
