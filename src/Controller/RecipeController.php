@@ -97,7 +97,7 @@ class RecipeController extends AbstractController
      * @param Recipe $recipe
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and recipe.isIsPublic() === true")]
+    #[Security("is_granted('ROLE_USER') and (recipe.isIsPublic() === true|| user === recipe.getUser())")]
     #[Route('/recette/{id}', 'recipe.show', methods:['GET', 'POST'])]
     public function show (
         Recipe $recipe, 

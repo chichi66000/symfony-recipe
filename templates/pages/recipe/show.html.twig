@@ -4,6 +4,10 @@
     <div class="container">
         <h1 class="mt-4">Recettes {{recipe.name}}</h1>
 
+        <div class="my-4">
+            <img style="max-width: 30em" src="{{ vich_uploader_asset(recipe, 'imageFile') }}">
+        </div>
+
         {# read and display just one flash message type #}
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
