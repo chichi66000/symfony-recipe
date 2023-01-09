@@ -89,11 +89,9 @@
                 {% endfor %}
             </div>
 
-            
-
             {# button submit #}
             <div class="form-group">
-                {{form_row(form.submit)}}
+                {{form_row(form.submit, {'label': 'Créer nouvelle recette'})}}
             </div>
 
         {{ form_end(form) }}
