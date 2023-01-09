@@ -155,6 +155,7 @@ class RecipeType extends AbstractType
                 'label_attr' => [
                    'class'=> 'form-label mt-4'
                 ],
+                'required' => false,
             ])
             ->add('ingredients', EntityType::class, [
                 'class' => Ingredient::class,

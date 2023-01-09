@@ -1,9 +1,10 @@
 {% extends "base.html.twig" %}
-
+{% block title %}Symfony Recipe - Modification mes recettes{% endblock %}
 {% block body %}
     <div class="container">
         <h1 class="mt-4">Modification de la recette</h1>
-        {{ form_start(form) }}
+        <form name="recipe" method="post" encryption="multipart/form-data">
+        {# {{ form_start(form) }} #}
             {# input Nom #}
             <div class="form-group">
                 {{ form_label(form.name)}}
@@ -13,6 +14,10 @@
                 </div>
             </div>
 
+            <div class="form-image" style="width: 32em">
+                {{form_row(form.imageFile)}}
+            </div>
+            
             {# input time #}
             <div class="form-group">
                 {{ form_label(form.time)}}
@@ -67,9 +72,6 @@
                 </div>
             </div>
             
-            <div class="" style="width: 32em">
-                {{form_row(form.imageFile)}}
-            </div>
 
             {{ form_label(form.ingredients) }}
             <br>
@@ -83,10 +85,15 @@
             </div>
             
             {# button submit #}
-            <div class="form-group">
+            {# <div class="form-group">
                 {{form_row(form.submit)}}
-            </div>
+            </div> #}
+            {{ form_row(form._token) }}
+            <div>
+                <button type="submit" id="recipe_submit" name="recipe[submit]" class="btn btn-primary mt-4">Modifier ma recette </button>
+            </div
 
-        {{ form_end(form) }}
+        </form>
+        {# {{ form_end(form) }} #}
     </div>
 {% endblock %}

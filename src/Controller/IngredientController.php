@@ -47,7 +47,7 @@ class IngredientController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('/ingredient/nouveau', name:'ingredient.new', methods: ['GET', 'POST'])]
+    #[Route('/ingredient/creation', name:'ingredient.new', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_USER')]
     public function new (
         Request $request,
@@ -56,7 +56,7 @@ class IngredientController extends AbstractController
     {
         $ingredient = new Ingredient();
         // create form
-        $form = $this->createForm(IngredientType::class, $ingredient);
+        $form = $this->createForm(IngredientType::class, $ingredient,  ['route' => "ingredient.new"]);
         // validate & send form
         $form ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +96,7 @@ class IngredientController extends AbstractController
         ): Response 
     {
         // create form
-        $form = $this->createForm(IngredientType::class, $ingredient);
+        $form = $this->createForm(IngredientType::class, $ingredient, ['route' => "ingredient.edit"]);
         // validate & send form
         $form ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
